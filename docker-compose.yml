@@ -1,7 +1,7 @@
-version: '2'
+version: "2"
 
 services:
-   db:
+   ${node_domain}:
      image: mysql:5.7
      volumes:
        - db_data:/var/lib/mysql
@@ -11,17 +11,25 @@ services:
        MYSQL_DATABASE: ${USERNAME}_wp
        MYSQL_USER: ${USERNAME}_adm
        MYSQL_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
+     container_name: ${USERNAME}_db
 
    wordpress:
+     depends_on:
+       - ${node_domain}
      image: wordpress:latest
-     ports:
+     expose:
        - 80
      restart: always
      environment:
-       WORDPRESS_DB_HOST: db:3306
+       VIRTUAL_HOST: ${node_domain}
+       WORDPRESS_DB_HOST: ${node_domain}:3306
        WORDPRESS_DB_USER: ${USERNAME}
        WORDPRESS_DB_PASSWORD: ${USER_PASSWORD}
-
+     container_name: ${node_domain}
 volumes:
     db_data:
-    
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
