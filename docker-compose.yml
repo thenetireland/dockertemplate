@@ -11,7 +11,7 @@ services:
         MYSQL_DATABASE: wordpress
         MYSQL_USER: wordpress
         MYSQL_PASSWORD: wordpress
-     container_name: bestweddingbandx
+     container_name: bestweddingbandY
 
    wordpress:
      depends_on:
@@ -27,7 +27,7 @@ services:
         WORDPRESS_DB_HOST: db_node_domain:3306
         WORDPRESS_DB_USER: wordpress
         WORDPRESS_DB_PASSWORD: wordpress
-     container_name: bestweddingbandx
+     container_name: bestweddingbandY
 volumes:
   db_data:
 
