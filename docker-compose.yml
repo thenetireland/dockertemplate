@@ -1,7 +1,7 @@
 version: "2"
 
 services:
-   ${node_domain}:
+   ${NODE_DOMAIN}:
      image: mysql:5.7
      volumes:
        - db_data:/var/lib/mysql
@@ -15,17 +15,17 @@ services:
 
    wordpress:
      depends_on:
-       - ${node_domain}
+       - ${NODE_DOMAIN}
      image: wordpress:latest
      expose:
        - 80
      restart: always
      environment:
-       VIRTUAL_HOST: ${node_domain}
-       WORDPRESS_DB_HOST: ${node_domain}:3306
+       VIRTUAL_HOST: ${NODE_DOMAIN}
+       WORDPRESS_DB_HOST: ${NODE_DOMAIN}:3306
        WORDPRESS_DB_USER: ${USERNAME}
        WORDPRESS_DB_PASSWORD: ${USER_PASSWORD}
-     container_name: ${node_domain}
+     container_name: ${NODE_DOMAIN}
 volumes:
     db_data:
 
