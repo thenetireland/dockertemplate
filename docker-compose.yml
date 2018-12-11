@@ -2,7 +2,7 @@ version: '2'
 
 services:
   example-app:
-    image: example/example-app
+    image: wordpress/latest
     expose:
       - 80
     environment:
