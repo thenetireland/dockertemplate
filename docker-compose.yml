@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
    db_node_domain:
@@ -7,11 +7,11 @@ services:
        - db_data:/var/lib/mysql
      restart: always
      environment:
-       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
-       MYSQL_DATABASE: ${USERNAME}_wp
-       MYSQL_USER: ${USERNAME}_adm
-       MYSQL_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
-     container_name: ${USERNAME}_db
+       MYSQL_ROOT_PASSWORD: PASSWORD
+       MYSQL_DATABASE: wordpressx
+       MYSQL_USER: wordpressx
+       MYSQL_PASSWORD: 123456789
+     container_name: wordpressx_db
 
    wordpress:
      depends_on:
@@ -21,15 +21,15 @@ services:
        - 80
      restart: always
      environment:
-       VIRTUAL_HOST: ${NODE_DOMAIN}
-       WORDPRESS_DB_HOST: ${NODE_DOMAIN}:3306
-       WORDPRESS_DB_USER: ${USERNAME}
-       WORDPRESS_DB_PASSWORD: ${USER_PASSWORD}
-     container_name: ${NODE_DOMAIN}
+       VIRTUAL_HOST: buildersleads.com
+       WORDPRESS_DB_HOST: db_node_domain:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: PASSWORD
+     container_name: buildersleads
 volumes:
     db_data:
 
 networks:
   default:
     external:
-      name: dockerwp
+      name: nginx-proxy
