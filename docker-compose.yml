@@ -7,11 +7,11 @@ services:
         - db_data:/var/lib/mysql
      restart: always
      environment:
-        MYSQL_ROOT_PASSWORD: somewordpress
-        MYSQL_DATABASE: wordpress2
-        MYSQL_USER: wordpress2
-        MYSQL_PASSWORD: wordpress2
-     container_name: bestwedd_msql
+        MYSQL_ROOT_PASSWORD: PtgCEBQmZan9Xgat
+        MYSQL_DATABASE: ${username}_wp
+        MYSQL_USER: ${username}_adm
+        MYSQL_PASSWORD: PtgCEBQmZ
+     container_name: ${username}_msql
 
    wordpress:
      depends_on:
@@ -19,15 +19,16 @@ services:
      image: wordpress:latest
      expose:
         - 80
+        - 443
      restart: always
      environment:
-        VIRTUAL_HOST: bestweddingband.ie
-        LETSENCRYPT_HOST: bestweddingband.ie
-        LETSENCRYPT_EMAIL: foo@bestweddingband.ie
+        VIRTUAL_HOST: ${domain}
+        LETSENCRYPT_HOST: ${domain}
+        LETSENCRYPT_EMAIL: foo@${domain}
         WORDPRESS_DB_HOST: db_node_domain:3306
-        WORDPRESS_DB_USER: wordpress
-        WORDPRESS_DB_PASSWORD: wordpress
-     container_name: bestwedd_web
+        WORDPRESS_DB_USER: thenetwpadmin
+        WORDPRESS_DB_PASSWORD: PtgCEBQmZ
+     container_name: ${username}_web
 volumes:
   db_data:
 
