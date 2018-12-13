@@ -25,7 +25,7 @@ services:
         VIRTUAL_HOST: ${DOMAIN}
         LETSENCRYPT_HOST: ${DOMAIN}
         LETSENCRYPT_EMAIL: foo@${DOMAIN}
-        WORDPRESS_DB_HOST: db_node_domain:3306
+        WORDPRESS_DB_HOST: ${DOMAIN}:3306
         WORDPRESS_DB_USER: ${USERNAME}_adm
         WORDPRESS_DB_PASSWORD: PtgCEBQmZ
      container_name: ${USERNAME}_web
