@@ -8,10 +8,10 @@ services:
      restart: always
      environment:
         MYSQL_ROOT_PASSWORD: somewordpress
-        MYSQL_DATABASE: wordpress
-        MYSQL_USER: wordpress
-        MYSQL_PASSWORD: wordpress
-     container_name: bestweddingbandY
+        MYSQL_DATABASE: wordpress2
+        MYSQL_USER: wordpress2
+        MYSQL_PASSWORD: wordpress2
+     container_name: bestwedd_msql
 
    wordpress:
      depends_on:
@@ -27,7 +27,7 @@ services:
         WORDPRESS_DB_HOST: db_node_domain:3306
         WORDPRESS_DB_USER: wordpress
         WORDPRESS_DB_PASSWORD: wordpress
-     container_name: bestweddingbandY
+     container_name: bestwedd_web
 volumes:
   db_data:
 
