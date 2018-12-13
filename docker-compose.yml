@@ -1,7 +1,7 @@
 version: "2"
 
 services:
-   db_${USERNAME}:
+   db_node_domain:
      image: mysql:5.7
      volumes:
         - db_data:/var/lib/mysql
@@ -15,7 +15,7 @@ services:
 
    wordpress:
      depends_on:
-        - db_${USERNAME}
+        - db_node_domain
      image: wordpress:latest
      expose:
         - 80
@@ -25,7 +25,7 @@ services:
         VIRTUAL_HOST: ${DOMAIN}
         LETSENCRYPT_HOST: ${DOMAIN}
         LETSENCRYPT_EMAIL: foo@${DOMAIN}
-        WORDPRESS_DB_HOST: db_${USERNAME}:3306
+        WORDPRESS_DB_HOST: db_node_domain:3306
         WORDPRESS_DB_USER: ${USERNAME}_adm
         WORDPRESS_DB_PASSWORD: PtgCEBQmZ
      container_name: ${USERNAME}_web
