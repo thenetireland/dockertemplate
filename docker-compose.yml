@@ -8,10 +8,10 @@ services:
      restart: always
      environment:
         MYSQL_ROOT_PASSWORD: PtgCEBQmZan9Xgat
-        MYSQL_DATABASE: ${username}_wp
-        MYSQL_USER: ${username}_adm
+        MYSQL_DATABASE: ${USERNAME}_wp
+        MYSQL_USER: ${USERNAME}_adm
         MYSQL_PASSWORD: PtgCEBQmZ
-     container_name: ${username}_msql
+     container_name: ${USERNAME}_msql
 
    wordpress:
      depends_on:
@@ -22,13 +22,13 @@ services:
         - 443
      restart: always
      environment:
-        VIRTUAL_HOST: ${domain}
-        LETSENCRYPT_HOST: ${domain}
-        LETSENCRYPT_EMAIL: foo@${domain}
+        VIRTUAL_HOST: ${DOMAIN}
+        LETSENCRYPT_HOST: ${DOMAIN}
+        LETSENCRYPT_EMAIL: foo@${DOMAIN}
         WORDPRESS_DB_HOST: db_node_domain:3306
         WORDPRESS_DB_USER: thenetwpadmin
         WORDPRESS_DB_PASSWORD: PtgCEBQmZ
-     container_name: ${username}_web
+     container_name: ${USERNAME}_web
 volumes:
   db_data:
 
